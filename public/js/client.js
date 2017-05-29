@@ -1,2 +1,2 @@
 console.log("ready");
-var socketIo = socket();
+var socket = io();
