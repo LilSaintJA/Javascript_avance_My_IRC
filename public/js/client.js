@@ -20,5 +20,5 @@
        });
     });
 
-    log(socket);
+    // log(socket);
 })(jQuery);
