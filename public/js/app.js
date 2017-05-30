@@ -4,7 +4,7 @@
     'use strict';
 
     var btn = $('.loginBtn');
-    console.log(btn);
+    // console.log(btn);
 
     btn.click(function () {
        // var form = $('.hidden');
