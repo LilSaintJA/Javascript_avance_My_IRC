@@ -2,29 +2,31 @@
 
 var express,
     app,
-    server,
+    http,
     io;
 //
 // On initialise l'application avec le framework Express
 // Et la bibliothéque http intégrée à node
 express = require('express');
 app = express();
+
 // Création du serveur
-server = require('http').createServer(app);
+http = require('http').Server(app);
+
+// Init socket
+io = require('socket.io')(http);
 
 // Lancement du serveur
 app.get('/', function (req, res) {
     'use strict';
-    res.sendfile(__dirname + '/index.html');
+    res.sendFile(__dirname + '/index.html');
     app.use(express.static(__dirname, 'css'));
     app.use(express.static(__dirname, 'js'));
 });
 
-// Rattachement du serveur à un port
-server.listen(8080);
+// On écoute le serveur
+http.listen(8080);
 
-// Init Socket.io
-io = require('socket.io')(server);
 io.on('connection', function (socket) {
    console.log('Client connecté');
 });
