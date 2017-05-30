@@ -29,6 +29,13 @@ http.listen(8080);
 
 // Chaque user va avoir sa propre connection socket
 io.on('connection', function (socket) {
+
+    var me;
     // console.log(socket);
    console.log('Client connecté');
+
+   socket.on('login', function (login) {
+       me = user;
+       console.log(login);
+   });
 });
