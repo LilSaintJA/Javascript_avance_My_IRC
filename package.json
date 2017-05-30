@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "express": "^4.10.2",
+    "mongodb": "^2.2.27",
     "socket.io": "^2.0.1"
   },
   "author": "LilSaint",
