@@ -27,6 +27,8 @@ app.get('/', function (req, res) {
 // On écoute le serveur
 http.listen(8080);
 
+// Chaque user va avoir sa propre connection socket
 io.on('connection', function (socket) {
+    // console.log(socket);
    console.log('Client connecté');
 });
