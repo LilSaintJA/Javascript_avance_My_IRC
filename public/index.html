@@ -26,24 +26,49 @@
                 </div>
             </nav>
         </div>
+        <!-- Formulaire d'inscription  -->
         <div class="container">
             <div class="row">
-                <form action="" id="loginForm" class="col s4 right hidden">
+                <form action="" method="post" id="signupForm" class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="pseudonyme" type="text" class="validate">
+                            <label for="pseudonyme">Pseudo</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">lock</i>
+                            <input id="pasword" type="password" class="validate">
+                            <label for="pasword">Password</label>
+                        </div>
+                    </div>
+                    <button class="btn waves-effect waves-light pink darken-4" id="880e4f" type="submit">Envoyer</button>
+                </form>
+            </div>
+        </div>
+        <!-- Formulaire de connection -->
+        <div class="container">
+            <div class="row">
+                <form action="" method="post" id="loginForm" class="col s12 right hidden">
                     <div class="row right">
                         <div class="input-field col s5">
+                            <i class="material-icons prefix">person</i>
                             <input type="text" id="pseudo" class="validate">
                             <label for="pseudo">Pseudo</label>
                         </div>
                         <div class="input-field col s5">
-                            <input type="text" id="mdp" class="validate">
+                            <i class="material-icons prefix">lock_open</i>
+                            <input type="password" id="mdp" class="validate">
                             <label for="mdp">Password</label>
                         </div>
-                        <button class="btn-floating btn-large waves-effect waves-light #880e4f pink darken-4" type="submit" name="action">
+                        <button class="btn-floating btn-large waves-effect waves-light #880e4f pink darken-4" type="submit">
                             <i class="material-icons right">send</i>
                         </button>
                     </div>
                 </form>
             </div>
+            <!-- End Of LoginForm -->
+            <!-- Section Chat -->
             <section id="chat" class="msgChat col s8 card-panel">
                 <h2 class="#880e4f pink-text darken-4-text">T&G</h2>
                 <div class="row">
@@ -52,11 +77,12 @@
                         <ul class="msg"></ul>
                     </div>
                 </div>
+                <!-- Formulaire de tchat -->
                 <div class="row">
                     <form action="" class="col s12 containerForm">
                         <div class="row">
                             <div class="input-field col s10">
-                                <i class="material-icons prefix">send</i>
+                                <i class="material-icons prefix">forum</i>
                                 <input id="sendMsg" type="text" class="validate">
                                 <label for="sendMsg">Kesako ?</label>
                             </div>
@@ -68,6 +94,7 @@
                         </div>
                     </form>
                 </div>
+                <!-- End Of formMsg -->
             </section>
         </div>
         <footer id="footer">
