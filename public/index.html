@@ -18,9 +18,8 @@
                     <div class="container">
                         <a href="#" class="brand-logo">T&G</a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
-                            <li><a href="sass.html">S'inscrire</a></li>
+                            <li><a href="#!" class="signupBtn">S'inscrire</a></li>
                             <li><a href="#!" class="loginBtn">Se Connecter</a></li>
-                            <!--<li><a href="collapsible.html">JavaScript</a></li>-->
                         </ul>
                     </div>
                 </div>
@@ -28,7 +27,8 @@
         </div>
         <!-- Formulaire d'inscription  -->
         <div class="container">
-            <div class="row">
+            <div class="row card-panel col s12 hiddenSignup">
+                <h2 class="#880e4f pink-text darken-4-text">Inscris toi</h2>
                 <form action="" method="post" id="signupForm" class="col s12">
                     <div class="row">
                         <div class="input-field col s6">
@@ -37,9 +37,28 @@
                             <label for="pseudonyme">Pseudo</label>
                         </div>
                         <div class="input-field col s6">
+                            <i class="material-icons prefix">mail</i>
+                            <input id="mail" type="email" class="validate">
+                            <label for="mail">Mail</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
                             <i class="material-icons prefix">lock</i>
                             <input id="pasword" type="password" class="validate">
                             <label for="pasword">Password</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">lock</i>
+                            <input id="confir-pasword" type="password" class="validate">
+                            <label for="confir-pasword">Confirmation Password</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">cake</i>
+                            <input type="date" id="dob" class="datepicker">
+                            <label for="dob">Date de naissance</label>
                         </div>
                     </div>
                     <button class="btn waves-effect waves-light pink darken-4" id="880e4f" type="submit">Envoyer</button>
@@ -49,7 +68,7 @@
         <!-- Formulaire de connection -->
         <div class="container">
             <div class="row">
-                <form action="" method="post" id="loginForm" class="col s12 right hidden">
+                <form action="" method="post" id="loginForm" class="col s12 right hiddenLogin">
                     <div class="row right">
                         <div class="input-field col s5">
                             <i class="material-icons prefix">person</i>
