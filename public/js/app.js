@@ -3,14 +3,22 @@
 (function ($) {
     'use strict';
 
-    var btn = $('.loginBtn');
-    // console.log(btn);
+    var loginLink   = $('.loginBtn'),
+        signupLink  = $('.signupBtn');
 
-    btn.click(function () {
-       // var form = $('.hidden');
-       //
-       // form.toggle(display);
-       // console.log(form);
-        $('.hidden').toggle('slow');
+    loginLink.click(function () {
+
+        $('.hiddenLogin').toggle('slow');
     });
+
+    signupLink.click(function () {
+       $('.hiddenSignup').toggle('slow');
+    });
+
+    $('.datepicker').pickadate({
+        selectMonths: true,
+        selectYears: 15,
+        format: 'dd-mm-yyyy'
+    });
+
 })(jQuery);
