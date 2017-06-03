@@ -15,6 +15,8 @@ var http = require('http').Server(app);
 
 var io = require('socket.io').listen(http);
 
+var pwdHash = require('password-hash');
+
 http.listen(8080);
 
 
@@ -52,5 +54,47 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
+
+// Chaque user va avoir sa propre connection socket
+/*io.on('connection', function (socket) {
+
+    var me = false;
+    // console.log(socket);
+    console.log('Client connecté');
+
+    for (var k in users) {
+        socket.emit('newusr', users[k]);
+    }
+
+    /!**
+     * Un utilisateur ce connecte
+     *!/
+    socket.on('login', function (login) {
+
+
+        me          = login;
+        console.log(me);
+        me.id       = login.pseudo;
+        me.pseudo   = login.pseudo;
+        me.avatar   = 'https://gravatar.com/avatar/' + pwdHash.generate(login.pseudo) + '?s=50';
+        io.emit('logged');
+        users[me.id] = me;
+        io.emit('newusr', me);
+        // console.log(me.id);
+        // console.log(login);
+    });
+
+    /!**
+     * Un utilisateur ce déconnecte
+     *!/
+    socket.on('disconnect', function () {
+        if (!me) {
+            return false;
+        }
+        delete users[me.id];
+        io.emit('disUsr', me);
+    });
+
+});*/
 
 module.exports = app;
