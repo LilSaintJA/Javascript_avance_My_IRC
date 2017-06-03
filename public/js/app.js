@@ -17,7 +17,7 @@
 
     $('.datepicker').pickadate({
         selectMonths: true,
-        selectYears: 15,
+        selectYears: 100,
         format: 'dd-mm-yyyy'
     });
 

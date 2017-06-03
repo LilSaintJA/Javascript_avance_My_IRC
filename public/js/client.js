@@ -8,17 +8,34 @@
 
     log("jQuery Is Ready");
 
-    var socket = io('http://localhost:8080');
+    var socket = io();
 
     $('#loginForm').submit(function (evt) {
        evt.preventDefault();
 
        // Envoie d'événement login avec socket au server
        socket.emit('login', {
-           pseudo   : $('#pseudo').val(),
-           mail     : $('#mdp').val()
+           pseudo    : $('#pseudo').val(),
+           mdp       : $('#mdp').val()
        });
     });
 
-    // log(socket);
+    socket.on('logged', function () {
+       $('#loginForm').toggle('slow');
+    });
+
+
+    /**
+     * Gestion des connectés
+     */
+    socket.on('newusr', function (user) {
+        // $('.users').append('<img src="' + user.avatar +'">');
+        $('.users').append('<div id="' + user.id + '"><p>' + user.pseudo + '</p></div>');
+        log('Nouvel utilisateur');
+    });
+
+    socket.on('disUser', function (user) {
+        $('#' + user.id).remove();
+    });
+
 })(jQuery);
