@@ -12,7 +12,11 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
+<<<<<<< HEAD
 var port = normalizePort(process.env.PORT || '8080');
+=======
+var port = normalizePort(process.env.PORT || '3000');
+>>>>>>> 25518f5c9dff81a13710e4312c22416f77af6cc8
 app.set('port', port);
 
 /**
@@ -22,6 +26,7 @@ app.set('port', port);
 var server = http.createServer(app);
 
 /**
+<<<<<<< HEAD
  * Socket.io
  */
 
@@ -29,6 +34,8 @@ var io = app.io;
 io.attach(server);
 
 /**
+=======
+>>>>>>> 25518f5c9dff81a13710e4312c22416f77af6cc8
  * Listen on provided port, on all network interfaces.
  */
 
