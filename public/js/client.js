@@ -8,17 +8,44 @@
 
     log("jQuery Is Ready");
 
-    var socket = io('http://localhost:8080');
+    var socket = io();
+    console.log(socket);
+    console.log(socket);
+    socket.emit('join', {msg: "vbjlshvnln"});
 
-    $('#loginForm').submit(function (evt) {
-       evt.preventDefault();
+    $('#signupForm').submit(function (evt) {
+        log('prevendDefault');
+       // evt.preventDefault();
+
+
+       socket.emit('newUsr', {
+           pseudonyme: $('#pseudonyme').val(),
+           email: $('#email').val(),
+           pass: $('#pass').val(),
+           confirmPass: $('#confirmPass').val(),
+           dob: $('#dob').val()
+       });
 
        // Envoie d'événement login avec socket au server
-       socket.emit('login', {
-           pseudo   : $('#pseudo').val(),
-           mail     : $('#mdp').val()
-       });
+       // socket.emit('login', {
+       //     pseudo    : $('#pseudo').val(),
+       //     mdp       : $('#mdp').val()
+       // });
     });
 
-    // log(socket);
+
+    /**
+     * Gestion des connectés
+     */
+    /*socket.on('newusr', function (user) {
+        console.log(user);
+        // $('.users').append('<img src="' + user.avatar +'">');
+        $('.users').append('<div><p>' + user.pseudo + '</p></div>');
+        log('Nouvel utilisateur');
+    });
+
+    socket.on('disUser', function (user) {
+        $('#' + user.id).remove();
+    });*/
+
 })(jQuery);
