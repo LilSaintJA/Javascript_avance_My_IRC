@@ -2,28 +2,28 @@
 
 (function ($) {
     'use strict';
-    // console.log("App is Ready");
+    console.log("App is Ready");
 
     var loginLink   = $('.loginBtn'),
         signupLink  = $('.signupBtn');
 
-    loginLink.click(function () {
+    $('.hiddenLogin').show();
 
-        $('.hiddenLogin').toggle('slow');
+    loginLink.click(function () {
+        console.log('pout');
+        $('.hiddenLogin').animate({height: "toggle", opacity: "toggle"}, "slow");
+        $('.hiddenSignup').hide();
     });
 
     signupLink.click(function () {
-       $('.hiddenSignup').toggle('slow');
+       $('.hiddenSignup').animate({height: "toggle", opacity: "toggle"}, "slow");
+       $('.hiddenLogin').hide();
     });
 
-    $('.datepicker').pickadate({
-        selectMonths: true,
-        selectYears: 100,
-<<<<<<< HEAD
-        format: 'yyyy-mm-dd'
-=======
-        format: 'dd-mm-yyyy'
->>>>>>> 25518f5c9dff81a13710e4312c22416f77af6cc8
-    });
+    // $('.datepicker').pickadate({
+    //     selectMonths: true,
+    //     selectYears: 100,
+    //     format: 'dd-mm-yyyy'
+    // });
 
 })(jQuery);
