@@ -2,15 +2,29 @@
 
 (function ($) {
     'use strict';
+    console.log("App is Ready");
 
-    var btn = $('.loginBtn');
-    console.log(btn);
+    var loginLink   = $('.loginBtn'),
+        signupLink  = $('.signupBtn');
 
-    btn.click(function () {
-       // var form = $('.hidden');
-       //
-       // form.toggle(display);
-       // console.log(form);
-        $('.hidden').toggle('slow');
+    $('.hiddenLogin').show();
+
+    loginLink.click(function () {
+        console.log('pout');
+        $('.hiddenLogin').animate({height: "toggle", opacity: "toggle"}, "slow");
+        $('.hiddenSignup').hide();
+        $('.socialBtn').show();
     });
+
+    signupLink.click(function () {
+       $('.hiddenSignup').animate({height: "toggle", opacity: "toggle"}, "slow");
+       $('.hiddenLogin, .socialBtn').hide();
+    });
+
+    // $('.datepicker').pickadate({
+    //     selectMonths: true,
+    //     selectYears: 100,
+    //     format: 'dd-mm-yyyy'
+    // });
+
 })(jQuery);

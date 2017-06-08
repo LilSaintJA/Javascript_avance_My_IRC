@@ -44,5 +44,8 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-.gitignore
-.idea/
+.idea/Javascript_avance_My_IRC.iml
+.idea/modules.xml
+
+data/journal
+.idea/vcs.xml
