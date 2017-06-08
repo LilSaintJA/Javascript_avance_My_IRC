@@ -8,28 +8,44 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Bubbler+One|Indie+Flower|Poiret+One|Raleway:300,400,500,600,700|Roboto+Mono:300,400" rel="stylesheet">
     <title>Chat io</title>
 </head>
-<body>
+<body class="#e8f5e9 green lighten-5">
 <div class="container">
     <div class="row">
-        <div class="col s6 center-block">
+        <div class="col s4 center-block socialBtn">
+            <div class="card-panel">
+                <p>Login via</p>
+                <div class="row">
+                    <a href="/auth/facebook" class="btn btn-waves #01579b light-blue darken-4"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="/auth/facebook" class="btn btn-waves #01579b light-blue darken-4">Sign In with Facebook</a>
+                </div>
+                <div class="row">
+                    <a href="/auth/twitter" class="btn btn-waves #039be5 light-blue darken-1"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    <a href="/auth/twitter" class="btn btn-waves #039be5 light-blue darken-1">Sign In with Twitter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s4 center-block">
             <div class="card-panel">
                 <form action="/register" method="post" class="center registerForm hiddenSignup">
                     <div class="row">
-                        <div class="input-field col s6 center-block">
+                        <div class="input-field col s10 center-block">
                             <input type="text" name="username" class="validate">
                             <label for="username">Username</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s6 center-block">
+                        <div class="input-field col s10 center-block">
                             <input type="password" name="password" class="validate">
                             <label for="password">Password</label>
                         </div>
                     </div>
-                    <button type="submit" class="btn waves-effect waves-light #880e4f pink darken-4" name="action">Sign Up
+                    <button type="submit" class="btn waves-effect waves-light #66bb6a green lighten-1" name="action">Sign Up
                         <i class="material-icons right">send</i>
                     </button>
                     <p>Déjà inscrit ? <a href="#" class="loginBtn">Connecte toi</a></p>
@@ -41,18 +57,18 @@
                 </form> <!-- End Of RegisterForm -->
                 <form action="/login" method="post" class="center loginForm hiddenLogin">
                     <div class="row">
-                        <div class="input-field col s6 center-block">
+                        <div class="input-field col s10 center-block">
                             <input type="text" name="username" class="validate">
                             <label for="username">Username</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s6 center-block">
+                        <div class="input-field col s10 center-block">
                             <input type="password" name="password" class="validate">
                             <label for="password">Password</label>
                         </div>
                     </div>
-                    <button type="submit" class="btn waves-effect waves-light #880e4f pink darken-4" name="action">Log In
+                    <button type="submit" class="btn waves-effect waves-light #66bb6a green lighten-1" name="action">Log In
                         <i class="material-icons right">send</i>
                     </button>
                     <p>Pas encore inscrit ? <a href="#" class="signupBtn"> Inscris toi</a></p>
