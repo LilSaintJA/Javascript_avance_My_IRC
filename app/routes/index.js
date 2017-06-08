@@ -3,7 +3,7 @@ var router      = express.Router();
 var passport    = require('passport');
 
 var User        = require('../models/user');
-// var Channel     = require('../models/channel');
+var Channel     = require('../models/channel');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -65,5 +65,14 @@ router.post('/register', function (req, res, next) {
             });
     }
 });
+
+// Chanel
+router.get('/channels', [User.isAuthenticated, function (req, res, next) {
+
+    Channel.find(function (err, channels) {
+        if (err) throw err;
+        res.render('channels', { channels });
+    });
+}]);
 
 module.exports = router;
