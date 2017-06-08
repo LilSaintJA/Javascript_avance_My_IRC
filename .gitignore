@@ -48,3 +48,4 @@ fabric.properties
 .idea/modules.xml
 
 data/journal
+.idea/vcs.xml
