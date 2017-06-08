@@ -21,8 +21,8 @@ mongoose.Promise = global.Promise;
 module.exports = {
     mongoose,
     models: {
-        user: require('./schemas/user')
-        // channel: require('./schemas/channel')
+        user: require('./schemas/user'),
+        channel: require('./schemas/channel')
     }
 };
 
