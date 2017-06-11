@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 
 var channelSchema = new mongoose.Schema({
     title: { type: String, required: true },
+    date_creation: { type: Date, default: Date.now() },
     connections: { type: [{ userId: String, socketId: String }]
     }
 });
