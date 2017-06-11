@@ -6,7 +6,7 @@ var User            = require('../models/user');
 
 var create = function (data, callback) {
     var newChannel = new channelModel(data);
-    newChannel.save(data);
+    newChannel.save(callback);
 };
 
 var find = function (data, callback) {
@@ -34,6 +34,12 @@ var findByIdAndUpdate = function (id, data, callback) {
     channelModel.findByIdAndUpdate(id, data, { new: true }, callback);
 };
 
+/**
+ *
+ * @param channel
+ * @param socket
+ * @param callback
+ */
 var addUser = function (channel, socket, callback) {
 
     var userId = socket.request.session.passport.user;
