@@ -69,6 +69,8 @@ router.post('/register', function (req, res, next) {
 // Chanel
 router.get('/channels', [User.isAuthenticated, function (req, res, next) {
 
+    // console.log(res);
+    // console.log(res.session);
     Channel.find(function (err, channels) {
         if (err) throw err;
         res.render('channels', { channels });
