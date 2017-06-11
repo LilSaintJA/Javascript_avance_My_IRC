@@ -1,7 +1,5 @@
 /*global console, module, require */
 var config  = require('../config');
-var redis   = require('redis').createClient();
-var adapter = require('socket.io-redis');
 
 var Channel = require('../models/channel');
 

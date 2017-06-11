@@ -80,7 +80,7 @@ router.get('/channels', [User.isAuthenticated, function (req, res, next) {
 
 // Admin
 router.get('/admin', function (req, res, next) {
-    
+
 });
 
 router.get('/tchat/:id', [User.isAuthenticated, function (req, res, next) {
