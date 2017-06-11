@@ -1,5 +1,3 @@
-'use strict';
-
 var config  = require('../config');
 var redis   = require('redis').createClient();
 var adapter = require('socket.io-redis');
