@@ -17,14 +17,8 @@
     });
 
     signupLink.click(function () {
-       $('.hiddenSignup').animate({height: "toggle", opacity: "toggle"}, "slow");
-       $('.hiddenLogin, .socialBtn').hide();
+        $('.hiddenSignup').animate({height: "toggle", opacity: "toggle"}, "slow");
+        $('.hiddenLogin, .socialBtn').hide();
     });
-
-    // $('.datepicker').pickadate({
-    //     selectMonths: true,
-    //     selectYears: 100,
-    //     format: 'dd-mm-yyyy'
-    // });
 
 })(jQuery);
