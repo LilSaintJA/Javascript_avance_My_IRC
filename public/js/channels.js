@@ -1,9 +1,11 @@
+/*global console, io, $ */
 var app = {
 
     /**
      * Gestion de la création des channels
      */
     channels: function () {
+        'use strict';
         var socket = io('/channels', { transports: ['websocket'] });
 
         socket.on('connect', function () {
@@ -31,6 +33,12 @@ var app = {
         });
     },
 
+    /**
+     * Gestion des messages
+     *
+     * @param channelId
+     * @param username
+     */
     tchat: function (channelId, username) {
 
         var socket = io('/tchat', { transports: ['websocket'] });
@@ -58,7 +66,7 @@ var app = {
 
             $('.sendMsg button').click(function () {
 
-                var inputEl = $("input[name=message]");
+                var inputEl = $("input[name='message']");
                 var messageCnt = inputEl.val().trim();
 
                 if (messageCnt !== '') {
@@ -72,6 +80,11 @@ var app = {
                     inputEl.val('');
                     app.helpers.addMessage(message);
                 }
+            });
+
+            socket.on('removeUser', function (userId) {
+                $('li#user-' + userId).remove();
+                app.helpers.updateNumOfUser();
             });
 
             socket.on('addMsg', function (message) {
