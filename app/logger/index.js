@@ -1,4 +1,4 @@
-'use strict';
+/*global console, require, module */
 
 var winston = require('winston');
 

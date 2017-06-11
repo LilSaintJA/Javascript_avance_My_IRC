@@ -26,6 +26,24 @@ body {
     border-radius: 5px;
 }
 
+.msg>li {
+    padding-top: 20px;
+}
+
+.newMsg {
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+ul>li:nth-child(2n+1) .newMsg {
+    background-color: #00bfa5;
+}
+
+ul>li:nth-child(2n+0) .newMsg {
+    background-color: #1de9b6;
+}
+
 #footer {
     display: flex;
     justify-content: center;

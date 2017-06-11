@@ -18,39 +18,44 @@
         <div class="">
             <div class="card-panel left col s12">
                 <!-- **************** Section infos/msg **************** -->
-                <div class="col s6 left">
+                <div class="col s8 left">
                     <div class="collection-item avatar center-align padding-container">
                         <img src="<%= user.picture %>" alt="avatar" class="circle">
                         <p>Bienvenue sur <%= channel.title %></p>
-                        <p class="usersNum"> User(s)</p>
+                        <p class="usersNum">user(s) connecté(s)</p>
                     </div>
                     <!-- **************** Section messages **************** -->
                     <div class="row">
                         <div class="chatMsg">
-                            <ul></ul>
+                            <ul class="msg"></ul>
                         </div> <!-- End Of .chatMsg -->
                     </div>
                     <!-- **************** Section send msg **************** -->
                     <div class="row">
                         <div class="sendMsg">
+                            <!--<form action="">-->
                             <div class="input-field col s12">
-                                <textarea id="message" name="message" class="materialize-textarea"></textarea>
+                                <!--<textarea id="message" name="message" class="materialize-textarea"></textarea>-->
+                                <input type="text" autofocus name="message" class="validate">
                                 <label for="message">Entre ton message</label>
                                 <button class="btn btn-waves #66bb6a green lighten-1 right">Envoyer</button>
                             </div>
+                            <!--</form>-->
                         </div>
                     </div>
                 </div> <!-- End Of .col.s4 left -->
                 <!-- **************** Section infos/users **************** -->
-                <div class="col s6 right">
+                <div class="col s4 right">
                     <div class="row">
                         <a href="/logout" class="btn btn-waves #b71c1c red darken-4 right">Logout</a>
                         <a href="/channels" class="btn btn-waves #880e4f pink darken-4 right">Channels</a>
                     </div>
                     <div class="row">
-                        <ul class="collection">
+                        <div class="usersList">
+                            <ul class="collection">
 
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div> <!-- End Of .card-panel -->
@@ -67,6 +72,6 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/app.js"></script>
 <script src="/js/channels.js"></script>
-<script>$(function(){app.tchat('<%= channel.id %>', <%= user.username %>)});</script>
+<script>$(function(){app.tchat('<%= channel.id %>', '<%= user.username %>')});</script>
 </body>
 </html>

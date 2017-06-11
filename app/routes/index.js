@@ -1,3 +1,4 @@
+/*global console, require, module */
 var express     = require('express');
 var router      = express.Router();
 var passport    = require('passport');
@@ -6,10 +7,11 @@ var User        = require('../models/user');
 var Channel     = require('../models/channel');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
+    'use strict';
 
     if (req.isAuthenticated()) {
-        res.redirect('/channels'); // rooms = channels
+        res.redirect('/channels');
     } else {
         res.render('login', {
             success: req.flash('success')[0],
@@ -32,6 +34,7 @@ router.post('/login', passport.authenticate('local',
 
 // Register via username & password
 router.post('/register', function (req, res, next) {
+    'use strict';
 
     var credentials = {
         'username': req.body.username,
@@ -66,7 +69,7 @@ router.post('/register', function (req, res, next) {
     }
 });
 
-// Chanel
+// Channel
 router.get('/channels', [User.isAuthenticated, function (req, res, next) {
 
     Channel.find(function (err, channels) {
@@ -74,6 +77,11 @@ router.get('/channels', [User.isAuthenticated, function (req, res, next) {
         res.render('channels', { channels });
     });
 }]);
+
+// Admin
+router.get('/admin', function (req, res, next) {
+
+});
 
 router.get('/tchat/:id', [User.isAuthenticated, function (req, res, next) {
     var channelId = req.params.id;

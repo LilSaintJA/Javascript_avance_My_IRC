@@ -1,6 +1,5 @@
+/*global console, module, require */
 var config  = require('../config');
-var redis   = require('redis').createClient();
-var adapter = require('socket.io-redis');
 
 var Channel = require('../models/channel');
 
@@ -10,6 +9,7 @@ var Channel = require('../models/channel');
  * @param io
  */
 var ioEvents = function (io) {
+    'use strict';
 
     /**
      * Create a custum "channels" namespace
@@ -35,6 +35,63 @@ var ioEvents = function (io) {
             });
         });
     });
+
+    /**
+     * Create a custum "tchat" namespace
+     */
+    io.of('/tchat').on('connection', function (socket) {
+
+        socket.on('join', function (channelId) {
+            Channel.findById(channelId, function (err, channel) {
+                if (err) throw err;
+
+                if (!channel) {
+                    socket.emit('updateUsersList', { error: "Heu je crois pas nan....." });
+                } else {
+                    if (socket.request.session.passport == null) {
+                        return false;
+                    }
+
+                    Channel.addUser(channel, socket, function (err, newChannel) {
+
+                        socket.join(newChannel.id);
+
+                        Channel.getUsers(newChannel, socket, function (err, users, countUserChannel) {
+
+                            if (err) throw err;
+
+                            socket.emit('updateUsersList', users, true);
+
+                            if (countUserChannel === 1) {
+                                socket.broadcast.to(newChannel.id).emit('updateUsersList', users[users.length - 1]);
+                            }
+                        });
+                    });
+                }
+            });
+        });
+
+        socket.on('disconnect', function () {
+
+            if (socket.request.session.passport == null) {
+                return false;
+            }
+
+            Channel.removeUser(socket, function (err, channel, userId, countUserChannel) {
+                if (err) throw err;
+
+                socket.leave(channel.id);
+
+                if (countUserChannel === 1) {
+                    socket.broadcast.to(channel.id).emit('removeUser', userId);
+                }
+            });
+        });
+
+        socket.on('newMsg', function (channelId, message) {
+            socket.broadcast.to(channelId).emit('addMsg', message);
+        });
+    });
 };
 
 /**
@@ -52,7 +109,7 @@ var init = function (app) {
 
     io.use((socket, next) => {
         require('../session')(socket.request, {}, next);
-});
+    });
 
     // Define all Events
     ioEvents(io);

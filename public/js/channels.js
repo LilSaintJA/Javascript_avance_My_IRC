@@ -1,9 +1,11 @@
+/*global console, io, $ */
 var app = {
 
     /**
      * Gestion de la création des channels
      */
     channels: function () {
+        'use strict';
         var socket = io('/channels', { transports: ['websocket'] });
 
         socket.on('connect', function () {
@@ -31,6 +33,12 @@ var app = {
         });
     },
 
+    /**
+     * Gestion des messages
+     *
+     * @param channelId
+     * @param username
+     */
     tchat: function (channelId, username) {
 
         var socket = io('/tchat', { transports: ['websocket'] });
@@ -46,6 +54,41 @@ var app = {
                 } else {
                     app.helpers.updateUsersList(users, clear);
                 }
+            });
+
+            /*   $("textarea[name='message']").keyup(function (evt) {
+             evt.preventDefault();
+             if (evt.keyCode === 13) {
+             console.log("Bien t'as appuyé sur entrée");
+             // $(this).parents('form').submit();
+             }
+             });*/
+
+            $('.sendMsg button').click(function () {
+
+                var inputEl = $("input[name='message']");
+                var messageCnt = inputEl.val().trim();
+
+                if (messageCnt !== '') {
+                    var message = {
+                        content: messageCnt,
+                        username: username,
+                        date: Date.now()
+                    };
+
+                    socket.emit('newMsg', channelId, message);
+                    inputEl.val('');
+                    app.helpers.addMessage(message);
+                }
+            });
+
+            socket.on('removeUser', function (userId) {
+                $('li#user-' + userId).remove();
+                app.helpers.updateNumOfUser();
+            });
+
+            socket.on('addMsg', function (message) {
+                app.helpers.addMessage(message);
             });
         });
     },
@@ -83,14 +126,15 @@ var app = {
 
             var html = '';
 
-            for (var user of users) {
+            for(var user of users) {
+                console.log('Je rentre dans la boucle');
                 user.username = this.encodeHTML(user.username);
                 //language=HTML
                 html += `<li class="collection-item avatar" id="user-${user._id}">
-                            <img src="${user.picture}" alt="avatar-${user.username}">
+                            <img src="${user.picture}" alt="avatar-${user.username}" class="circle">
                             <div class="row">
                                 <p>${user.username}</p>
-                                <p><i class="fa fa-circle online"></i>En ligne</p>
+                                <p><i class="fa fa-circle online #66bb6a green-text lighten-1"></i> En ligne</p>
                             </div>
                         </li>`;
             }
@@ -105,23 +149,23 @@ var app = {
                 $('.usersList ul').prepend(html);
             }
 
-            this.updateNumOfChannels();
+            this.updateNumOfUser();
         },
 
         // Add new message tchat history
         addMessage: function (message) {
-          message.date          = (new Date(message.date)).toLocaleDateString();
-          message.username      = this.encodeHTML(message.username);
-          message.content       = this.encodeHTML(message.content);
+            message.date          = (new Date(message.date)).toLocaleString();
+            message.username      = this.encodeHTML(message.username);
+            message.content       = this.encodeHTML(message.content);
 
-          var html = `<li>
-                        <div class="row">
+            var html = `<li>
                             <span>${message.username}</span>
                             <span>${message.date}</span>
+                        <div class="newMsg">
+                            <p>${message.content}</p>
                         </div>
-                        <div class="newMsg">${message.content}</div>
                       </li>`;
-          $(html).hide().appendTo('.chatMsg ul').slideDown(200);
+            $(html).hide().appendTo('.chatMsg ul').slideDown(200);
 
 
         },
@@ -132,8 +176,8 @@ var app = {
         },
 
         updateNumOfUser: function () {
-            var num = $('.userList ul li').length;
-            $('.usersNum').text(num + " User(s)");
+            var num = $('.usersList ul li').length;
+            $('.usersNum').text(num + " user(s) connecté(s)");
         }
     }
 };
