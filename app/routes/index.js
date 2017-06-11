@@ -75,4 +75,25 @@ router.get('/channels', [User.isAuthenticated, function (req, res, next) {
     });
 }]);
 
+router.get('/tchat/:id', [User.isAuthenticated, function (req, res, next) {
+    var channelId = req.params.id;
+
+    Channel.findById(channelId, function (err, channel) {
+       if (err) throw err;
+
+       if (!channel) {
+           return next();
+       }
+       res.render('tchat', { user: req.user, channel: channel });
+    });
+}]);
+
+router.get('/logout', function (req, res, next) {
+   req.logout();
+
+   req.session = null;
+
+   res.redirect('/');
+});
+
 module.exports = router;
