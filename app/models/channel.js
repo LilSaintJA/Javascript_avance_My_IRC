@@ -1,23 +1,26 @@
-/*global console, require */
-//'use strict';
+/*global console, require, module */
 
 var channelModel    = require('../database').models.channel;
 var User            = require('../models/user');
 
 var create = function (data, callback) {
+    'use strict';
     var newChannel = new channelModel(data);
     newChannel.save(callback);
 };
 
 var find = function (data, callback) {
+    'use strict';
     channelModel.find(data, callback);
 };
 
 var findOne = function (data, callback) {
+    'use strict';
     channelModel.findOne(data, callback);
 };
 
 var findById = function (id, callback) {
+    'use strict';
     channelModel.findById(id, callback);
 };
 
@@ -31,6 +34,7 @@ var findById = function (id, callback) {
  * @param callback
  */
 var findByIdAndUpdate = function (id, data, callback) {
+    'use strict';
     channelModel.findByIdAndUpdate(id, data, { new: true }, callback);
 };
 
@@ -41,10 +45,10 @@ var findByIdAndUpdate = function (id, data, callback) {
  * @param callback
  */
 var addUser = function (channel, socket, callback) {
+    'use strict';
 
-    var userId = socket.request.session.passport.user;
-
-    var conn = { userId: userId, socketId: socket.id };
+    var userId = socket.request.session.passport.user,
+        conn = { userId: userId, socketId: socket.id };
     channel.connections.push(conn);
     channel.save(callback);
 };
@@ -57,6 +61,7 @@ var addUser = function (channel, socket, callback) {
  * @param callback
  */
 var getUsers = function (channel, socket, callback) {
+    'use strict';
 
     var users = [],
         vis = {},
@@ -95,6 +100,7 @@ var getUsers = function (channel, socket, callback) {
  * @param callback
  */
 var removeUser = function (socket, callback) {
+    'use strict';
 
     var userId = socket.request.session.passport.user;
 
@@ -126,7 +132,7 @@ var removeUser = function (socket, callback) {
 
             return pass;
         });
-    })
+    });
 };
 
 module.exports = {

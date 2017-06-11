@@ -1,5 +1,4 @@
-'use strict';
-
+/*global console, require, module */
 var config      = require('../config');
 var passport    = require('passport');
 var logger      = require('../logger');
@@ -11,6 +10,7 @@ var TwitterStrategy     = require('passport-twitter').Strategy;
 var User = require('../models/user');
 
 var init = function () {
+    'use strict';
     passport.serializeUser(function (user, done) {
         done(null, user.id);
     });

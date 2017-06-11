@@ -1,11 +1,11 @@
-'use strict';
-
+/*global console, module, require, process */
 var session         = require('express-session');
 var mongoStore      = require('connect-mongo')(session);
 var db              = require('../database');
 var config          = require('../config');
 
 var init = function () {
+    'use strict';
     if (process.env.NODE_ENV === 'development') {
         return session({
             secret: config.sessionSecret,

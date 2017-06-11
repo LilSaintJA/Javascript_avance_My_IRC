@@ -1,3 +1,4 @@
+/*global console, module, require */
 var config  = require('../config');
 var redis   = require('redis').createClient();
 var adapter = require('socket.io-redis');
@@ -10,6 +11,7 @@ var Channel = require('../models/channel');
  * @param io
  */
 var ioEvents = function (io) {
+    'use strict';
 
     /**
      * Create a custum "channels" namespace
@@ -71,7 +73,26 @@ var ioEvents = function (io) {
             });
         });
 
+        socket.on('disconnect', function () {
 
+            if (socket.request.session.passport == null) {
+                return false;
+            }
+
+            Channel.removeUser(socket, function (err, channel, userId, countUserChannel) {
+                if (err) throw err;
+
+                socket.leave(channel.id);
+
+                if (countUserChannel === 1) {
+                    socket.broadcast.to(channel.id).emit('removeUser', userId);
+                }
+            });
+        });
+
+        socket.on('newMsg', function (channelId, message) {
+            socket.broadcast.to(channelId).emit('addMsg', message);
+        });
     });
 };
 

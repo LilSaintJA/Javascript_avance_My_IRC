@@ -1,17 +1,20 @@
-'use strict';
+/*global console, require, module */
 
 var userModel = require('../database').models.user;
 
 var create = function (data, callback) {
+    'use strict';
     var newUser = new userModel(data);
     newUser.save(callback);
 };
 
 var findOne = function (data, callback) {
+    'use strict';
     userModel.findOne(data, callback);
 };
 
 var findById = function (id, callback) {
+    'use strict';
     userModel.findById(id, callback);
 };
 
@@ -23,6 +26,7 @@ var findById = function (id, callback) {
  * @param callback
  */
 var findOrCreate = function (data, callback) {
+    'use strict';
     findOne({ 'socialId': data.id }, function (err, user) {
         if (err) { return callback(err); }
         if (user) {
@@ -55,6 +59,7 @@ var findOrCreate = function (data, callback) {
  * @param next
  */
 var isAuthenticated = function (req, res, next) {
+    'use strict';
     if (req.isAuthenticated()) {
         next();
     } else {

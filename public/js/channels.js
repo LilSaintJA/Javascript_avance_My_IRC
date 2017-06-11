@@ -154,7 +154,7 @@ var app = {
 
         // Add new message tchat history
         addMessage: function (message) {
-            message.date          = (new Date(message.date)).toLocaleDateString();
+            message.date          = (new Date(message.date)).toLocaleString();
             message.username      = this.encodeHTML(message.username);
             message.content       = this.encodeHTML(message.content);
 
