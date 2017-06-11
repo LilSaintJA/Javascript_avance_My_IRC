@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Bubbler+One|Indie+Flower|Poiret+One|Raleway:300,400,500,600,700|Roboto+Mono:300,400" rel="stylesheet">
+    <title>T&G</title>
+</head>
+<body class="#e8f5e9 green lighten-5">
+<div class="container clearfix padding-container">
+    <div class="row">
+        <div class="">
+            <div class="card-panel left col s12">
+                <!-- **************** Section infos/msg **************** -->
+                <div class="col s6 left">
+                    <div class="collection-item avatar center-align padding-container">
+                        <img src="<%= user.picture %>" alt="avatar" class="circle">
+                        <p>Bienvenue sur <%= channel.title %></p>
+                        <p class="usersNum"> User(s)</p>
+                    </div>
+                    <!-- **************** Section messages **************** -->
+                    <div class="row">
+                        <div class="chatMsg">
+                            <ul></ul>
+                        </div> <!-- End Of .chatMsg -->
+                    </div>
+                    <!-- **************** Section send msg **************** -->
+                    <div class="row">
+                        <div class="sendMsg">
+                            <div class="input-field col s12">
+                                <textarea id="message" name="message" class="materialize-textarea"></textarea>
+                                <label for="message">Entre ton message</label>
+                                <button class="btn btn-waves #66bb6a green lighten-1 right">Envoyer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End Of .col.s4 left -->
+                <!-- **************** Section infos/users **************** -->
+                <div class="col s6 right">
+                    <div class="row">
+                        <a href="/logout" class="btn btn-waves #b71c1c red darken-4 right">Logout</a>
+                        <a href="/channels" class="btn btn-waves #880e4f pink darken-4 right">Channels</a>
+                    </div>
+                    <div class="row">
+                        <ul class="collection">
+
+                        </ul>
+                    </div>
+                </div>
+            </div> <!-- End Of .card-panel -->
+        </div> <!-- End Of .col.s8.center-block -->
+    </div> <!-- End Of .row -->
+</div> <!-- End Of .container -->
+<footer id="footer">
+    <div class="container">
+        <span class="copyright">&copy; T&G - 2017 | By LilSaint</span>
+    </div>
+</footer>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/channels.js"></script>
+<script>$(function(){app.tchat('<%= channel.id %>', <%= user.username %>)});</script>
+</body>
+</html>
