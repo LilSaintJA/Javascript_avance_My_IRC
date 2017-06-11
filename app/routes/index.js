@@ -69,12 +69,31 @@ router.post('/register', function (req, res, next) {
 // Chanel
 router.get('/channels', [User.isAuthenticated, function (req, res, next) {
 
-    // console.log(res);
-    // console.log(res.session);
     Channel.find(function (err, channels) {
         if (err) throw err;
         res.render('channels', { channels });
     });
 }]);
+
+router.get('/tchat/:id', [User.isAuthenticated, function (req, res, next) {
+    var channelId = req.params.id;
+
+    Channel.findById(channelId, function (err, channel) {
+       if (err) throw err;
+
+       if (!channel) {
+           return next();
+       }
+       res.render('tchat', { user: req.user, channel: channel });
+    });
+}]);
+
+router.get('/logout', function (req, res, next) {
+   req.logout();
+
+   req.session = null;
+
+   res.redirect('/');
+});
 
 module.exports = router;
